@@ -21,3 +21,16 @@ services:
       - 8080:3001
     environment:
       - DATABASE_URI=postgres://docker:docker@database:5432/docker
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - api
+    restart: unless-stopped
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    environment:
+      - REACT_URI=http://localhost:8080
