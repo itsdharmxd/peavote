@@ -1,4 +1,4 @@
-const db = require("../../connections")
+const db = require("../../db")
 const Poll = require("../../models/poll")
 const uniqueID = require("../../utils/uniqueID")
 
