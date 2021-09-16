@@ -1,4 +1,4 @@
-const db = require("../connections")
+const db = require("../db")
 const Sequelize = require("sequelize")
 const Poll = require("./poll")
 
