@@ -3,16 +3,16 @@ const Poll = require("../../models/poll")
 const {QueryTypes} = require("sequelize")
 
 const getPoll = (req, res) => {
-    const pollID =  req.params.id;
+    const pollId =  req.params.id;
 
-    if(pollID === undefined){
+    if(pollId === undefined){
         return res.status(400).json({
             status: "error",
             error: "Invalid request."
         })
     }
 
-    Poll.findByPk(pollID).then(poll => {
+    Poll.findByPk(pollId).then(poll => {
         const title = poll.get('title');
         const options = poll.get('options');
         const createdAt = poll.get('createdAt');
@@ -21,7 +21,7 @@ const getPoll = (req, res) => {
         let query = `
         SELECT option, count(option) as vote_count
         FROM votes
-        WHERE "pollID = '${pollID}'
+        WHERE "pollId" = '${pollId}'
         GROUP BY option;`
 
         db.query(query, {type: QueryTypes.SELECT}).then(results => {

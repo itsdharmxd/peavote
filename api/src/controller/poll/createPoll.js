@@ -14,8 +14,8 @@ const createPoll = (req, res) => {
 
     db.sync().then(()=>{
             return Poll.create({
-            id: uniqueID(64),
-            api_key: uniqueID(64),
+            id: uniqueID(16),
+            api_key: uniqueID(16),
             title,
             options,
             expiry,

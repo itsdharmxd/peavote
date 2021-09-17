@@ -5,21 +5,21 @@ const Vote = require("../../models/vote")
 const uniqueID = require("../../utils/uniqueID")
 
 const votePoll = (req, res) => {
-    const pollID = req.params.id;
+    const pollId = req.params.id;
     const option = req.body.option;
 
-    Poll.findByPk(pollID).then(poll => {
+    Poll.findByPk(pollId).then(poll => {
         if(Date.now() > parseInt(poll.get('expiry'))){
             return res.status(400).json({
                 message: "Poll has expired."
             })
         }
 
-        const id = poll.get('limit_IP') ? `${req.ip}-${pollID}` : uniqueID(64)
+        const id = poll.get('limit_IP') ? `${req.ip}-${pollId}` : uniqueID(16)
 
         db.sync().then(() => {
             return Vote.create({
-                id, pollID, option
+                id, pollId, option
             })
         }).then(vote => {
             return res.status(200).json({

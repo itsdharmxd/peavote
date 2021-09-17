@@ -1,19 +1,19 @@
 const Poll = require("../../models/poll")
 
 const updatePoll = (req, res) => {
-    const pollID = req.param.id;
+    const pollId = req.param.id;
     const api_key = req.headers.api_key;
 
     const expiry = req.body.expiry;
 
-    if(pollID === undefined || api_key === undefined || expiry === undefined){
+    if(pollId === undefined || api_key === undefined || expiry === undefined){
         return res.status(400).json({
             status: "error",
             error: "Invalid request."
         })
     }
 
-    Poll.findByPk(pollID).then(poll => {
+    Poll.findByPk(pollId).then(poll => {
         const poll_api_key = poll.get('api_key')
 
         if(api_key !== poll_api_key){
@@ -24,7 +24,7 @@ const updatePoll = (req, res) => {
         }
     })
 
-    Poll.update({expiry}, {where: {id: pollID}}).then(() => {
+    Poll.update({expiry}, {where: {id: pollId}}).then(() => {
         return res.status(200).json({
             status: "success",
             message: "Poll updated successfully."

@@ -1,17 +1,17 @@
 const Poll = require("../../models/poll")
 
 const deletePoll = (req, res) => {
-    const pollID = req.params.id;
+    const pollId = req.params.id;
     const api_key = req.headers.api_key;
 
-    if(pollID === undefined || api_key === undefined){
+    if(pollId === undefined || api_key === undefined){
         return res.status(401).json({
             status: "error",
             error: "Unauthorized for this request. Please authenticate."
         })
     }
 
-    Poll.findByPk(pollID).then(poll => {
+    Poll.findByPk(pollId).then(poll => {
         const poll_api_key = poll.get('api_key')
 
         if(api_key !== poll_api_key){
@@ -22,7 +22,7 @@ const deletePoll = (req, res) => {
         }
     })
 
-    Poll.destroy({where: {id: pollID}}).then(() => {
+    Poll.destroy({where: {id: pollId}}).then(() => {
         return res.status(200).json({
             status: "success",
             message: "Poll deleted successfully."
