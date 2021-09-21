@@ -75,6 +75,12 @@ const Poll = () => {
         setOptionHover(newOptionHover)
     }
 
+    const calculateResultWidth = (votes, totalVotes) => {
+        const pct = ((votes / totalVotes) * 100) | 0;
+        console.info(votes, totalVotes, pct);
+        return pct < 7 ? `0%` : `${pct}%`;
+      };
+
     const handleOptionClick = index => {
         // if already voted, do nothing
         if(userVotedOn !== -1) return;
@@ -153,6 +159,13 @@ const Poll = () => {
                         >
                             {option.votes.toLocaleString()}
                         </span>
+
+                        <div
+                            className={option.votes === maxVotes ? 'voteFill' : 'emptyFill'}
+                            style={{
+                            width: calculateResultWidth(option.votes, totalVotes),
+                            }}
+                        />
                         </>
                     )}
                 </div>
