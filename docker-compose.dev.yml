@@ -9,6 +9,7 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_DB=docker
   api:
+    container_name: peavote_api
     build: ./api
     links:
       - database
@@ -22,6 +23,7 @@ services:
     environment:
       - DATABASE_URI=postgres://docker:docker@database:5432/docker
   frontend:
+    container_name: peavote_frontend
     build:
       context: ./client
       dockerfile: Dockerfile.dev

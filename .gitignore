@@ -1,1 +1,4 @@
 node_modules/
+k8s/
+# ignore Kompose binary
+kompose.exe

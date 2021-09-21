@@ -1,38 +1,27 @@
-.App {
-  text-align: center;
+/* poll related styles */
+
+.pollOption {
+  background-color: #57ff57;
+  border-radius: 60px;
+  height: 60px;
+  width: min(600px, 90%);
+  display: block;
+  margin: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pollOptionText {
+  position: absolute;
+  left: 30px;
+  top: 18px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pollOptionVotes {
+  position: absolute;
+  right: 30px;
+  top: 18px;
+  font-weight: 600;
 }
