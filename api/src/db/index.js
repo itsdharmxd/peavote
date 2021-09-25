@@ -1,6 +1,7 @@
 const {Sequelize} = require("sequelize");
+const keys = require("./keys")
 
-const sequelize = new Sequelize(process.env.DATABASE_URI);
+const sequelize = new Sequelize(`postgres://${keys.pgUser}:${keys.pgPassword}@${keys.pgHost}:${keys.pgPort}/${keys.pgDatabase}`);
 
 sequelize.authenticate().then(() => {
     console.log("API has connected to database successfully.")
