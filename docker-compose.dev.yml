@@ -21,12 +21,17 @@ services:
     ports:
       - 8080:3001
     environment:
-      - DATABASE_URI=postgres://docker:docker@database:5432/docker
+      # - DATABASE_URI=postgres://docker:docker@database:5432/docker
+      - PGUSER=docker
+      - PGPASSWORD=docker
+      - PGHOST=database
+      - PGPORT=5432
+      - PGDATABASE=docker
   frontend:
     container_name: peavote_frontend
     build:
       context: ./client
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     depends_on:
       - api
     restart: unless-stopped
