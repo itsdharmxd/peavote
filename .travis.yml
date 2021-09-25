@@ -1,0 +1,33 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t burntcarrot/frontend-test -f ./client/Dockerfile ./client
+
+scripts:
+    - docker run -e CI=true burntcarrot/frontend-test npm test -- --coverage
+
+after_success:
+    - docker build -t burntcarrot/peavote-client ./client
+    - docker build -t burntcarrot/peavote-nginx ./nginx
+    - docker build -t burntcarrot/peavote-api ./api
+    # Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Take those image and push them to docker hub
+    - docker push burntcarrot/peavote-client
+    - docker push burntcarrot/peavote-nginx
+    - docker push burntcarrot/peavote-api
+
+deploy:
+    provider: elasticbeanstalk
+    region: ap-south-1
+    app: peavote
+    env: Peavote-env
+    bucket_name: $AWS_BUCKET_NAME
+    bucket_path: docker-peavote
+    on:
+        branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
