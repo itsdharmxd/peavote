@@ -148,7 +148,7 @@ const Poll = () => {
                             style={{
                             color:
                                 userVotedOn > -1 && option.votes === maxVotes && maxVotes > 0
-                                ? '#57ff57'
+                                ? '#fff'
                                 : '#050505',
                             fontWeight:
                                 userVotedOn > -1 && option.votes === maxVotes && maxVotes > 0
