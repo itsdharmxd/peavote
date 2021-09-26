@@ -20,7 +20,7 @@ const Poll = () => {
     let {id} = useParams()
 
     const fetchResults = async () => {
-        const API_URI = process.env.REACT_URI || "http://localhost:8080"
+        const API_URI = process.env.REACT_URI
 
         axios.get(`${API_URI}/poll/${id}`).then(res => {
             const data = res.data.data;
@@ -105,7 +105,7 @@ const Poll = () => {
         setTotalVotes(total)
         setMaxVotes(max)
 
-        const API_URI = process.env.REACT_URI || "http://localhost:8080"
+        const API_URI = process.env.REACT_URI
 
         axios.put(`${API_URI}/poll/${id}/vote`, {option: options[index].title}).then(() => fetchResults()).catch(() => {})
     }
