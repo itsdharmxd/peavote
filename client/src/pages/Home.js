@@ -81,9 +81,9 @@ function Home(){
             title: title.trim(), options: filteredOptions, limit_IP, expiry
         }
 
-        const API_URI = process.env.REACT_URI
+        const API_URI = process.env.REACT_URI || "http://localhost:8080"
 
-        axios.post(`${API_URI}/poll`, pollData).then(res => {
+        axios.post(`/poll`, pollData).then(res => {
             if(res.data.status !== "success"){
                 return setError("Unable to create poll.")
             } else {

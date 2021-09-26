@@ -20,9 +20,9 @@ const Poll = () => {
     let {id} = useParams()
 
     const fetchResults = async () => {
-        const API_URI = process.env.REACT_URI
+        const API_URI = process.env.REACT_URI || "http://localhost:8080"
 
-        axios.get(`${API_URI}/poll/${id}`).then(res => {
+        axios.get(`/poll/${id}`).then(res => {
             const data = res.data.data;
             setTitle(data.title);
             setExpiry(data.expiry);
@@ -105,9 +105,9 @@ const Poll = () => {
         setTotalVotes(total)
         setMaxVotes(max)
 
-        const API_URI = process.env.REACT_URI
+        const API_URI = process.env.REACT_URI || "http://localhost:8080"
 
-        axios.put(`${API_URI}/poll/${id}/vote`, {option: options[index].title}).then(() => fetchResults()).catch(() => {})
+        axios.put(`/poll/${id}/vote`, {option: options[index].title}).then(() => fetchResults()).catch(() => {})
     }
 
     const renderExpiry = () => {
