@@ -22,7 +22,7 @@ const Poll = () => {
     const fetchResults = async () => {
         const API_URI = process.env.REACT_URI || "http://localhost:8080"
 
-        axios.get(`/poll/${id}`).then(res => {
+        axios.get(`/api/poll/${id}`).then(res => {
             const data = res.data.data;
             setTitle(data.title);
             setExpiry(data.expiry);
@@ -107,7 +107,7 @@ const Poll = () => {
 
         const API_URI = process.env.REACT_URI || "http://localhost:8080"
 
-        axios.put(`/poll/${id}/vote`, {option: options[index].title}).then(() => fetchResults()).catch(() => {})
+        axios.put(`/api/poll/${id}/vote`, {option: options[index].title}).then(() => fetchResults()).catch(() => {})
     }
 
     const renderExpiry = () => {
