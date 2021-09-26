@@ -9,7 +9,7 @@ const pollsRoute = require("./routes/polls");
 
 const app = express();
 
-app.set("port", process.env.PORT || 3000);
+app.set("port", 5000);
 
 app.use(cors());
 app.use(helmet());

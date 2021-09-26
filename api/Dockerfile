@@ -1,9 +1,9 @@
 FROM node:alpine
-ENV PORT 3001
+# ENV PORT 3001
 WORKDIR /app
 COPY package.json .
-# RUN ["yarn"]
+RUN ["yarn"]
 COPY . .
-EXPOSE 3001
+# EXPOSE 3001
 # USER node
 CMD ["yarn", "start"]
