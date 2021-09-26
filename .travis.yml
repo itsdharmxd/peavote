@@ -24,9 +24,9 @@ deploy:
     provider: elasticbeanstalk
     region: ap-south-1
     app: peavote
-    env: Peavote-env
+    env: Peavote-env-2
     bucket_name: $AWS_BUCKET_NAME
-    bucket_path: docker-peavote
+    bucket_path: peavote
     on:
         branch: main
     access_key_id: $AWS_ACCESS_KEY
