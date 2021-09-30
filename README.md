@@ -10,6 +10,14 @@ Easy-to-use polls website.
 
 ![Preview](static/prod-eb-pass.png)
 
+## Run locally:
+
+Use Docker-Compose for running a local instance:
+
+```
+docker-compose -f docker-compose.dev.yml up -d --build
+```
+
 ## What's being used:
 - Frontend
   - React
