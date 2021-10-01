@@ -124,9 +124,12 @@ function Home(){
             </select>
             <button onClick={handleSubmit}>Create poll</button>
             </header>
+            
 
             {error &&
+            <div className="errorMessage">
                 <p>{error}</p>
+            </div>
             }
         </div>
     )
