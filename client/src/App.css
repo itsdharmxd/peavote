@@ -42,8 +42,7 @@
 .errorMessage{
   text-align: center;
   position: relative;
-  padding: 0.90rem 0.90rem;
-  margin-bottom: 1rem;
+  padding: 0.0rem 0.10rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   color: #721c24;
